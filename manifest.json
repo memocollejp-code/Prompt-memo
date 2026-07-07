@@ -1,7 +1,7 @@
 {
-  "name": "PWA Starter",
-  "short_name": "PWA Starter",
-  "description": "PWA Ultimate Template",
+  "name": "プロンプトメモ",
+  "short_name": "プロンプトメモ",
+  "description": "プロンプトメモ",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -10,7 +10,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>PWA Starter</title>
+  <title>プロンプトメモ</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
@@ -21,7 +21,7 @@
 <body>
   <header class="app-header">
     <button id="backBtn" class="back-btn" type="button" hidden aria-label="前の画面に戻る">←</button>
-    <h1 class="app-title"><span class="app-title-text">PWA Starter</span><span id="appVersion" class="app-version"></span></h1>
+    <h1 class="app-title"><span class="app-title-text">プロンプトメモ</span><span id="appVersion" class="app-version"></span></h1>
   </header>
 
   <main id="app" class="app-main"></main>
@@ -40,6 +40,8 @@
   <script src="./utils.js"></script>
   <script src="./ui-components.js"></script>
   <script src="./core.js"></script>
-  <script src="./app.js"></script>
+  <script src="./app.views.js"></script>
+  <script src="./app.actions.js"></script>
+  <script src="./app.config.js"></script>
 </body>
 </html>
