@@ -3,10 +3,10 @@
 /* =========================================================
  * PWA Ultimate Template - sw.js
  * オフライン対応: アプリシェルをキャッシュし、ネット無しでも起動。
- * app.js の APP_CONFIG.version を上げたら CACHE_VERSION も必ず上げること。
+ * app.config.js の APP_CONFIG.version を上げたら CACHE_VERSION も必ず上げること。
  * ========================================================= */
 
-const CACHE_VERSION = 'v1.1.0';
+const CACHE_VERSION = 'v1.2.0';
 const CACHE_NAME = `pwa-ultimate-${CACHE_VERSION}`;
 
 const ASSETS = [
@@ -18,7 +18,9 @@ const ASSETS = [
   './utils.js',
   './ui-components.js',
   './core.js',
-  './app.js',
+  './app.views.js',
+  './app.actions.js',
+  './app.config.js',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'
