@@ -1,0 +1,457 @@
+/* =========================================================
+ * PWA Dev Tools - page-layouts.css v1.0.0
+ * アプリ量産用の定番画面レイアウト3種（スマホファースト）
+ * 1. List(リスト型)  2. Form(フォーム型)  3. Grid/Dashboard(グリッド型)
+ * テンプレートのCSS変数を参照（未定義でも動くようフォールバック付き）
+ * ========================================================= */
+
+/* ---------- 共通 ---------- */
+.section-title {
+  margin: 20px 4px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-sub, #6b7280);
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* ---------- 1. List（リスト型: メモ・ToDo・履歴一覧） ---------- */
+.list {
+  overflow: hidden;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e5ea);
+  border-radius: var(--radius, 12px);
+  box-shadow: var(--shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+.list + .list {
+  margin-top: 16px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 14px;
+  font-size: 15px;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease;
+}
+
+.list-item + .list-item {
+  border-top: 1px solid var(--border, #e2e5ea);
+}
+
+.list-item:active {
+  background: var(--bg, #f6f7f9);
+}
+
+.list-item-icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  background: var(--bg, #f6f7f9);
+  border-radius: 10px;
+}
+
+.list-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-item-title {
+  display: block;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-sub, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item-end {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-sub, #6b7280);
+}
+
+/* ToDo用チェックボックス（labelを.list-itemにして包む） */
+.list-item-check {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid var(--border, #cdd2da);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.list-item-check:checked {
+  border-color: var(--accent, #3b82f6);
+  background: var(--accent, #3b82f6);
+}
+
+.list-item-check:checked::after {
+  content: '✓';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-text, #ffffff);
+}
+
+.list-item-check:checked ~ .list-item-body .list-item-title {
+  color: var(--text-sub, #6b7280);
+  text-decoration: line-through;
+}
+
+.list-empty {
+  padding: 40px 16px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-sub, #6b7280);
+}
+
+.list-empty-icon {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 36px;
+}
+
+/* 追加用フローティングボタン */
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--accent-text, #ffffff);
+  background: var(--accent, #3b82f6);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.fab:active {
+  transform: scale(0.94);
+}
+
+body.has-bottom-nav .fab {
+  bottom: calc(76px + env(safe-area-inset-bottom));
+}
+
+/* ---------- 2. Form（フォーム型: 入力・設定画面） ---------- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub, #6b7280);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  font-size: max(16px, 1rem); /* iOSの自動ズーム防止＋OSフォントスケール追従 */
+  color: var(--text, #1a1d21);
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e5ea);
+  border-radius: var(--radius-sm, 8px);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-textarea {
+  min-height: 110px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.form-select {
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent, #3b82f6);
+}
+
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: var(--danger, #ef4444);
+}
+
+.form-help {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-sub, #6b7280);
+}
+
+.form-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--danger, #ef4444);
+}
+
+/* 設定画面の行（.listで包んで使う） */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 14px;
+}
+
+.setting-row + .setting-row {
+  border-top: 1px solid var(--border, #e2e5ea);
+}
+
+.setting-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.setting-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.setting-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-sub, #6b7280);
+}
+
+/* トグルスイッチ（input type="checkbox"に付与） */
+.switch {
+  position: relative;
+  flex: none;
+  width: 50px;
+  height: 30px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--border, #cdd2da);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.switch:checked {
+  background: var(--accent, #3b82f6);
+}
+
+.switch:checked::after {
+  transform: translateX(20px);
+}
+
+/* ---------- 3. Grid / Dashboard（グリッド型: 集計・ボタン配置） ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.grid + .grid,
+.grid + .list,
+.list + .grid {
+  margin-top: 16px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-full {
+  grid-column: 1 / -1;
+}
+
+/* 集計カード（数値表示） */
+.stat-card {
+  padding: 14px;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e5ea);
+  border-radius: var(--radius, 12px);
+  box-shadow: var(--shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub, #6b7280);
+}
+
+.stat-value {
+  margin-top: 4px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.stat-unit {
+  margin-left: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub, #6b7280);
+}
+
+.stat-trend {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub, #6b7280);
+}
+
+.stat-trend.is-up {
+  color: #16a34a;
+}
+
+.stat-trend.is-down {
+  color: var(--danger, #ef4444);
+}
+
+/* 大きなタップボタン（アイコン＋ラベル） */
+.action-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 88px;
+  padding: 12px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: inherit;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e5ea);
+  border-radius: var(--radius, 12px);
+  box-shadow: var(--shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.action-tile:active {
+  transform: scale(0.97);
+}
+
+.action-tile-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+/* 進捗バー */
+.progress {
+  height: 8px;
+  overflow: hidden;
+  background: var(--border, #e2e5ea);
+  border-radius: 4px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent, #3b82f6);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* バッジ・タグ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-sub, #6b7280);
+  background: var(--bg, #f6f7f9);
+  border-radius: 999px;
+}
+
+.badge-accent {
+  color: var(--accent-text, #ffffff);
+  background: var(--accent, #3b82f6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-item,
+  .list-item-check,
+  .fab,
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .switch,
+  .switch::after,
+  .action-tile,
+  .progress-bar {
+    transition-duration: 0.01ms !important;
+  }
+}

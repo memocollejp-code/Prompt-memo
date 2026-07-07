@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- interactive-widget: 仮想キーボード表示時にコンテンツをリサイズ（対応ブラウザのみ） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181d" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="PWA Ultimate Template">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>PWA Starter</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./ui-components.css">
+  <link rel="stylesheet" href="./page-layouts.css">
+</head>
+<body>
+  <header class="app-header">
+    <button id="backBtn" class="back-btn" type="button" hidden aria-label="前の画面に戻る">←</button>
+    <h1 class="app-title"><span class="app-title-text">PWA Starter</span><span id="appVersion" class="app-version"></span></h1>
+  </header>
+
+  <main id="app" class="app-main"></main>
+
+  <noscript><p class="empty">このアプリの利用にはJavaScriptが必要です。</p></noscript>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('./sw.js')
+          .catch((err) => console.warn('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+  <script src="./utils.js"></script>
+  <script src="./ui-components.js"></script>
+  <script src="./core.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
