@@ -9,6 +9,52 @@
 
 const Actions = {};
 
+/* ===== [A:category-add] ここから ===== */
+/* カテゴリ追加モーダルを開き、入力値を保存 */
+Actions['category-add-open'] = async () => {
+  let categoryName = '';
+  const content = document.createElement('div');
+  content.innerHTML = `
+    <div class="form-group">
+      <label class="form-label" for="categoryAddInput">カテゴリ名</label>
+      <input type="text" id="categoryAddInput" class="form-input" placeholder="例: アイデア" maxlength="20" />
+    </div>
+  `;
+  const input = content.querySelector('#categoryAddInput');
+  input.addEventListener('input', (e) => {
+    categoryName = e.target.value;
+  });
+
+  const confirmed = await Modal.open({
+    title: '📂 カテゴリを追加',
+    content,
+    buttons: [
+      { label: 'キャンセル', value: false },
+      { label: '追加', value: true, variant: 'primary' }
+    ]
+  });
+
+  if (!confirmed) return;
+
+  const name = categoryName.trim();
+  if (!name) {
+    Toast.error('カテゴリ名を入力してください');
+    return;
+  }
+
+  const categories = state.get('categories') || [];
+  if (categories.includes(name)) {
+    Toast.error('同じ名前のカテゴリが既にあります');
+    return;
+  }
+
+  categories.push(name);
+  state.set('categories', categories);
+  Toast.success('カテゴリを追加しました');
+  router.refresh();
+};
+/* ===== [A:category-add] ここまで ===== */
+
 /* ===== [A:prompt-copy] ここから ===== */
 /* プロンプト本文をクリップボードにコピー */
 Actions['prompt-copy'] = (el) => {

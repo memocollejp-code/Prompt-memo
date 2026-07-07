@@ -49,6 +49,7 @@ Views['/'] = () => {
       <div class="x-chips-horizontal">
         ${categories.map(renderCategoryChip).join('')}
       </div>
+      <button class="btn btn-block" data-action="category-add-open" style="margin-top: 12px;">＋ カテゴリを追加</button>
 
       ${recentPrompts.length > 0 ? `
         <div class="section-header" style="margin-top: 24px;">

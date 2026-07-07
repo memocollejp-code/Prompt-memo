@@ -6,7 +6,7 @@
  * app.config.js の APP_CONFIG.version を上げたら CACHE_VERSION も必ず上げること。
  * ========================================================= */
 
-const CACHE_VERSION = 'v1.2.0';
+const CACHE_VERSION = 'v1.2.1';
 const CACHE_NAME = `pwa-ultimate-${CACHE_VERSION}`;
 
 const ASSETS = [
